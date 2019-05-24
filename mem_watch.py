@@ -52,8 +52,8 @@ class NVIDIA_MEM_GUI():
 
         r = check_output(["nvidia-smi"])
 
-        mem_string = re.findall("\d+MiB \/\s+\d+MiB",r)
-        sizes = map(float, re.findall("\d+", mem_string[0]))
+        mem_string = re.findall("\d+MiB \/\s+\d+MiB",str(r))
+        sizes = list(map(float, re.findall("\d+", mem_string[0])))
         self.max_gpu_mem = sizes[1]
         self.current_gpu_mem = sizes[0]
 
@@ -80,7 +80,7 @@ class NVIDIA_MEM_GUI():
     def draw(self):
         self.root.update()
         self.canvas.draw()
-        self.canvas.show()
+        # self.canvas.show()
 
 
 if __name__ == "__main__":
